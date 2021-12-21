@@ -1,22 +1,26 @@
 import {
   Entity,
   Column,
-  Unique,
+  Index,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
+import Tag from "../../../../tags/infra/typeorm/entities/Tag";
 
-@Entity('tags')
-class Tag {
+@Entity('cads')
+class Card {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column({
-    type: "varchar",
-    unique: true,
-  })
-  name: string;
+  @Column()
+  text: string;
+
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags:  Tag[];
 
   @CreateDateColumn()
   created_at: Date;
@@ -25,4 +29,4 @@ class Tag {
   updated_at: Date;
 }
 
-export default Tag;
+export default Card;

@@ -20,7 +20,7 @@ class TagService {
 
   async create({name}: ICreateTagDTO): Promise<Tag> {
     const checkTagExists = await this.tagsRepository.findByName(name);
-    if (checkTagExists) { throw new AppError('Tag já existe.'); }
+    if (checkTagExists) return checkTagExists
 
     return this.tagsRepository.create({ name });
   }
