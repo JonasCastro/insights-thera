@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="title text-center primary--text">Feed de <span class="font-weight-semibold">Insights</span></p>
-    <div class="px-5">
+    <div class="px-5 d-flex flex-column align-center">
       <v-card
         v-for="card in cards"
         v-bind:key="card.id"
