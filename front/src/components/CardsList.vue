@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p class="title text-center primary--text">Feed de <span class="font-weight-semibold">Insights</span></p>
     <div class="px-5 d-flex flex-column align-center">
       <v-card
         v-for="card in cards"
@@ -68,9 +67,5 @@ export default {
     font-weight: 700;
     margin-top: 24px;
   }
-  .title {
-    font-size: 20px;
-    margin-bottom: 24px !important;
-    font-style: italic;
-  }
+
 </style>
