@@ -16,13 +16,15 @@
               alt="John"
             >
         </v-avatar>
-        <h2 class="font-italic white--text avatar-name">Olá, Antonio!</h2>
+        <span class="font-italic white--text avatar-name">
+          Olá, Antonio!
+        </span>
         <p class="font-italic white--text avatar-email">
           antonio.pina@g.globo
         </p>
       </div>
 
-      <v-btn icon >
+      <v-btn icon class="mt-2">
         <v-icon color="primary">mdi-plus</v-icon>
       </v-btn>
     </div>
@@ -31,7 +33,7 @@
 
 <script>
 export default {
-
+  name: 'Header'
 }
 </script>
 
@@ -43,7 +45,12 @@ export default {
     font-weight: 300;
   }
   .avatar-email {
-    Opacity: 64%;
+    opacity: 64%;
     font-size: 12px;
+  }
+  .avatar-name {
+    opacity: 80%;
+    font-size: 24px;
+    font-weight: 300;
   }
 </style>
