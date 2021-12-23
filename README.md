@@ -50,7 +50,8 @@
 ## 🎨 Layout
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="Demo" title="#Demo" src="./assets/demo.gif" width="900px">
+  <img alt="Demo" title="#Demo01" src="./demos/demo01.png" width="300px">
+  <img alt="Demo" title="#Demo01" src="./demos/demo02.png" width="300px">
 </p>
 
 ---
