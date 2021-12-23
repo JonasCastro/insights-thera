@@ -7,9 +7,11 @@
       <CardsList :cards="cards"/>
       <span
         v-if="!total"
-        class="primary--text"
+        class="white--text"
       >
         Desculpe, não foram encontrados insights.
+        <br>
+        Teste cadastrar alguns insights ou limpe o filtro ! :D
       </span>
       <div
         v-else-if="total !== cards.length"
