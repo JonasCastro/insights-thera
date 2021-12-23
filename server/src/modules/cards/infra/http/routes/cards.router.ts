@@ -8,6 +8,7 @@ const cardsController = new CardsController();
 
 cardsRouter.get('/', cardsController.getAll);
 cardsRouter.post('/', cardsController.create);
+cardsRouter.post('/new-tags', cardsController.createCardsAndTags);
 cardsRouter.patch('/:id', cardsController.update);
 cardsRouter.delete('/:id', cardsController.delete);
 

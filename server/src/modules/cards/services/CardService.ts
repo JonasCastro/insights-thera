@@ -29,6 +29,10 @@ class CardService {
     return this.cardsRepository.create({ text, tags });
   }
 
+  async createMany(cards: ICreateCardDTO[]): Promise<Card[]> {
+    return this.cardsRepository.createMany(cards);
+  }
+
   async update({id, text, tags}: IUpdateCardDTO): Promise<Card> {
     const checkCardExists = await this.cardsRepository.findById(id);
     if (!checkCardExists) throw new AppError('Card não encontrado.');

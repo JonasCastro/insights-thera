@@ -9,6 +9,7 @@ interface IOptions {
 }
 export default interface ICardsRepository {
   create(data: ICreateCardDTO): Promise<Card>;
+  createMany(data: ICreateCardDTO[]): Promise<Card[]>;
   findById(id: string): Promise<Card | undefined>;
   find({ take, offset }: IOptions): Promise<[Card[], number]>;
   delete(id: string): Promise<boolean>;

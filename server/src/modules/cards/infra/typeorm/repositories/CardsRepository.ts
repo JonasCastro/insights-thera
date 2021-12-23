@@ -26,6 +26,11 @@ class CardsRepository implements ICardsRepository {
     return this.ormRepository.save(card);
   }
 
+  async createMany(cards: ICreateCardDTO[]): Promise<Card[]> {
+    const newCards = this.ormRepository.create(cards);
+    return this.ormRepository.save(newCards);
+  }
+
   async find({ take, offset, termOrCategory }: IOptions): Promise<[Card[], number]> {
     const query = termOrCategory ? { where: [ {  text: Like(`%${termOrCategory}%`) } ] } : {}
 
