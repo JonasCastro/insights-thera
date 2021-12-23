@@ -4,7 +4,15 @@
     <Header />
     <span class="title primary--text">Feed de <span>Insights</span></span>
     <div class="content-wrapper">
-      <CardsList />
+      <CardsList :cards="cards"/>
+      <p v-if="!total">Desculpe, não foram encontrados insights</p>
+      <div
+        v-else-if="total !== cards.length"
+        class="loading-more"
+      >
+        <h1>...</h1>
+        <p @click="loadMore">Toque para exibir mais insights</p>
+      </div>
     </div>
     <Search class="search"/>
   </div>
@@ -14,14 +22,40 @@
 import Header from './Header.vue'
 import CardsList from '../../components/CardsList.vue'
 import Search from '../../components/Search.vue'
-
+import api from '../../services/api'
 export default {
   name: 'Home',
-
   components: {
     Header,
     CardsList,
     Search
+  },
+  async mounted () {
+    this.cards = await this.fetchCards()
+  },
+  data () {
+    return {
+      cards: [],
+      total: 0,
+      take: 4,
+      offset: 0
+    }
+  },
+  methods: {
+    async loadMore () {
+      this.offset += this.take
+      const cardsFound = await this.fetchCards()
+      this.cards.push(...(cardsFound || []))
+    },
+    fetchCards () {
+      return api.get(`/cards?take=${this.take}&offset=${this.offset}`).then(response => {
+        this.total = response?.data?.total || 0
+        return response?.data?.cards || []
+      })
+    },
+    filterName (name) {
+      console.log(name)
+    }
   }
 }
 </script>
@@ -62,5 +96,17 @@ export default {
   }
   .title span {
     font-weight: 600 !important;
+  }
+  .loading-more {
+    color: #666666;
+    text-align: center;
+  }
+  .loading-more h1 {
+    opacity: 50%;
+  }
+  .loading-more p {
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
   }
 </style>

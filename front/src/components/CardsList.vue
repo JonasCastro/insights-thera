@@ -21,44 +21,21 @@
       </div>
       </v-card>
     </div>
-    <p v-if="!total">Desculpe, não foram encontrados insights</p>
-    <div
-      v-else-if="total !== cards.length"
-      class="loading-more"
-    >
-      <h1>...</h1>
-      <p @click="loadMore">Toque para exibir mais insights</p>
-    </div>
   </div>
 </template>
 
 <script>
-import api from '../services/api'
 export default {
   name: 'CardList',
 
-  data () {
-    return {
-      cards: [],
-      total: 0,
-      take: 4,
-      offset: 0
-    }
-  },
-  async mounted () {
-    this.cards = await this.fetchCards()
-  },
-  methods: {
-    async loadMore () {
-      this.offset += this.take
-      const cardsFound = await this.fetchCards()
-      this.cards.push(...(cardsFound || []))
+  props: {
+    cards: {
+      type: Array,
+      default: () => ([])
     },
-    fetchCards () {
-      return api.get(`/cards?take=${this.take}&offset=${this.offset}`).then(response => {
-        this.total = response?.data?.total || 0
-        return response?.data?.cards || []
-      })
+    total: {
+      type: Number,
+      default: 0
     }
   }
 }
@@ -84,18 +61,6 @@ export default {
     font-weight: 700;
     margin-top: 24px;
     margin-left: 6px;
-  }
-  .loading-more {
-    color: #666666;
-    text-align: center;
-  }
-  .loading-more h1 {
-    opacity: 50%;
-  }
-  .loading-more p {
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
   }
 
 </style>
