@@ -2,7 +2,7 @@
   <header>
     <div class="d-flex align-top justify-space-around mt-6">
       <v-img
-        src="../assets/brand-insights.svg"
+        src="../../assets/brand-insights.svg"
         max-height="32"
         max-width="50"
       />

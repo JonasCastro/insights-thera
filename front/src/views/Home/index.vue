@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Header from '../../components/Header.vue'
+import Header from './Header.vue'
 import CardsList from '../../components/CardsList.vue'
 import Search from '../../components/Search.vue'
 
