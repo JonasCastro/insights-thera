@@ -30,7 +30,7 @@
         persistent-hint
       >
       <template v-slot:selection="{ item }">
-        <span class="tag mr-1" >
+        <span class="tag mr-1 mt-1" >
           <span> {{ item }} </span>
         </span>
       </template>
@@ -76,7 +76,6 @@ export default {
     width: 100vw;
     padding: 0;
     margin: 0;
-    text-align: center;
     background:#F4F4F4;
   }
   .background {
@@ -98,7 +97,6 @@ export default {
     padding: 8px;
     font-size: 12px;
     font-weight: 600;
-    margin-top: 24px;
   }
   .tag span {
     color: #ED4D77;
