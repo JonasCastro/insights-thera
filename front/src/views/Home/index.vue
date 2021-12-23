@@ -5,7 +5,12 @@
     <span class="title primary--text">Feed de <span>Insights</span></span>
     <div class="content-wrapper">
       <CardsList :cards="cards"/>
-      <p v-if="!total">Desculpe, não foram encontrados insights</p>
+      <span
+        v-if="!total"
+        class="primary--text"
+      >
+        Desculpe, não foram encontrados insights.
+      </span>
       <div
         v-else-if="total !== cards.length"
         class="loading-more"
@@ -57,7 +62,7 @@ export default {
       })
     },
     async filterByTermOrCategory (termOrCategory) {
-      if (termOrCategory) this.cards = await this.fetchCards(termOrCategory)
+      this.cards = await this.fetchCards(termOrCategory)
     }
   }
 }

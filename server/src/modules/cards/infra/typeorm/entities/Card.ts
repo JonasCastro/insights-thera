@@ -15,7 +15,9 @@ class Card {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
+  @Column({
+    length: 400
+  })
   text: string;
 
   @ManyToMany(() => Tag, tag => tag)

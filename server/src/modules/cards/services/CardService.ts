@@ -26,7 +26,6 @@ class CardService {
   }
 
   async create({text, tags}: ICreateCardDTO): Promise<Card> {
-    console.log("🚀 ~ file: CardService.ts ~ line 24 ~ CardService ~ create ~ text, tags", text, tags)
     return this.cardsRepository.create({ text, tags });
   }
 

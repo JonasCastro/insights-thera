@@ -95,6 +95,7 @@ export default {
       api.post('/cards', this.card)
         .then(() => {
           this.messageAlert = 'Cadastrado com sucesso'
+          this.$router.push('/')
         })
         .catch(() => {
           this.messageAlert = 'Erro ao cadastrar o card'
