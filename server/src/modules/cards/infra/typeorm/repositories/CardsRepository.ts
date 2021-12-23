@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Like, Repository } from 'typeorm';
 import ICardsRepository from '../../repositories/ICardsRepository';
 import ICreateCardDTO from '../../../dtos/ICreateCardDTO';
 import IUpdateCardDTO from '../../../dtos/IUpdateCardDTO';
@@ -7,6 +7,7 @@ import Card from '../entities/Card';
 interface IOptions {
   take: number,
   offset: number,
+  termOrCategory: string,
 }
 class CardsRepository implements ICardsRepository {
   private ormRepository: Repository<Card>;
@@ -25,9 +26,15 @@ class CardsRepository implements ICardsRepository {
     return this.ormRepository.save(card);
   }
 
-  async find({ take, offset }: IOptions): Promise<[Card[], number]> {
+  async find({ take, offset, termOrCategory }: IOptions): Promise<[Card[], number]> {
+    const query = termOrCategory ? { where: [ {  text: Like(`%${termOrCategory}%`) } ] } : {}
 
-    return this.ormRepository.findAndCount({ relations: ["tags"], skip: offset, take });
+    return this.ormRepository.findAndCount({
+      relations: ["tags"],
+      skip: offset,
+      take,
+      ...query
+    });
   }
 
   async save(card: Card): Promise<Card> {

@@ -16,13 +16,14 @@ function findTags(tags: string[]){
 interface IOptions {
   take: number,
   offset: number,
+  termOrCategory: string
 }
 export default class TagsController {
   public async getAll(request: Request, response: Response): Promise<Response> {
     const cardService = container.resolve(CardService);
-    const { take = 4, offset = 0 } = request.query;
+    const { take = 4, offset = 0, termOrCategory = '' } = request.query;
 
-    const result = await cardService.getAll({ take, offset } as IOptions);
+    const result = await cardService.getAll({ take, offset, termOrCategory } as IOptions);
     if(Array.isArray(result) && result.length) return response.json({ cards: result[0], total: result[1]});
     return response.json({ cards: [], total: 0});
   }

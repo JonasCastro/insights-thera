@@ -14,7 +14,10 @@
         <p @click="loadMore">Toque para exibir mais insights</p>
       </div>
     </div>
-    <Search class="search"/>
+    <Search
+      class="search"
+      @filter="filterByTermOrCategory"
+    />
   </div>
 </template>
 
@@ -47,14 +50,14 @@ export default {
       const cardsFound = await this.fetchCards()
       this.cards.push(...(cardsFound || []))
     },
-    fetchCards () {
-      return api.get(`/cards?take=${this.take}&offset=${this.offset}`).then(response => {
+    fetchCards (termOrCategory = '') {
+      return api.get(`/cards?take=${this.take}&offset=${this.offset}&termOrCategory=${termOrCategory}`).then(response => {
         this.total = response?.data?.total || 0
         return response?.data?.cards || []
       })
     },
-    filterName (name) {
-      console.log(name)
+    async filterByTermOrCategory (termOrCategory) {
+      if (termOrCategory) this.cards = await this.fetchCards(termOrCategory)
     }
   }
 }

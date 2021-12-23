@@ -5,6 +5,7 @@ import IUpdateCardDTO from '../../dtos/IUpdateCardDTO';
 interface IOptions {
   take: number,
   offset: number,
+  termOrCategory: string
 }
 export default interface ICardsRepository {
   create(data: ICreateCardDTO): Promise<Card>;

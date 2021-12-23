@@ -18,7 +18,7 @@ class Card {
   @Column()
   text: string;
 
-  @ManyToMany(() => Tag)
+  @ManyToMany(() => Tag, tag => tag)
   @JoinTable()
   tags:  Tag[];
 

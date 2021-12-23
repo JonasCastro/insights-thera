@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:serve": "vue-cli-service serve",
+    "dev:server": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
@@ -12,6 +12,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "vue-debounce": "^3.0.1",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0"
   },

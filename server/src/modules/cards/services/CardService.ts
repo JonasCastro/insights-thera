@@ -12,6 +12,7 @@ import { container } from 'tsyringe';
 interface IOptions {
   take: number,
   offset: number,
+  termOrCategory: string
 }
 @injectable()
 class CardService {
@@ -20,8 +21,8 @@ class CardService {
     private cardsRepository: ICardsRepository,
   ) {}
 
-  async getAll({ take, offset }: IOptions): Promise<[Card[], number]> {
-    return this.cardsRepository.find({ take, offset });
+  async getAll({ take, offset, termOrCategory }: IOptions): Promise<[Card[], number]> {
+    return this.cardsRepository.find({ take, offset, termOrCategory });
   }
 
   async create({text, tags}: ICreateCardDTO): Promise<Card> {
