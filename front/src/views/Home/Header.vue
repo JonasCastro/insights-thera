@@ -24,7 +24,11 @@
         </p>
       </div>
 
-      <v-btn icon class="mt-2">
+      <v-btn
+        icon
+        class="mt-2"
+        @click="handleRouter"
+      >
         <v-icon color="primary">mdi-plus</v-icon>
       </v-btn>
     </div>
@@ -34,7 +38,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    handleRouter () {
+      this.$router.push('/create')
+    }
+  }
 }
 </script>
 

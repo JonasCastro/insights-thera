@@ -1,6 +1,10 @@
 <template>
   <header class="d-flex align-center mt-6">
-    <v-btn icon class="mt-2 ml-2">
+    <v-btn
+      icon
+      class="mt-2 ml-2"
+      @click="handleRouter"
+    >
       <v-icon color="primary">mdi-arrow-left</v-icon>
     </v-btn>
     <div class="title-wrapper d-flex justify-center">
@@ -14,7 +18,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    handleRouter () {
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
