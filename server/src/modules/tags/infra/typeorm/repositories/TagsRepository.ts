@@ -11,6 +11,10 @@ class TagsRepository implements ITagsRepository {
     this.ormRepository = getRepository(Tag);
   }
 
+  async findByIds(ids: string[]): Promise<Tag[]> {
+    return this.ormRepository.findByIds(ids)
+  }
+
   async findById(id: string): Promise<Tag | undefined> {
     return this.ormRepository.findOne({ id });
   }

@@ -14,6 +14,10 @@ class TagService {
     private tagsRepository: ITagsRepository,
   ) {}
 
+  async findByIds(ids: string[]): Promise<Tag[]> {
+    return this.tagsRepository.findByIds(ids);
+  }
+
   async getAll(): Promise<Tag[]> {
     return this.tagsRepository.find();
   }
