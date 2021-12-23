@@ -4,6 +4,10 @@ import ICreateCardDTO from '../../../dtos/ICreateCardDTO';
 import IUpdateCardDTO from '../../../dtos/IUpdateCardDTO';
 import Card from '../entities/Card';
 
+interface IOptions {
+  take: number,
+  offset: number,
+}
 class CardsRepository implements ICardsRepository {
   private ormRepository: Repository<Card>;
 
@@ -21,8 +25,9 @@ class CardsRepository implements ICardsRepository {
     return this.ormRepository.save(card);
   }
 
-  async find(): Promise<Card[]> {
-    return this.ormRepository.find({ relations: ["tags"] });
+  async find({ take, offset }: IOptions): Promise<[Card[], number]> {
+
+    return this.ormRepository.findAndCount({ relations: ["tags"], skip: offset, take });
   }
 
   async save(card: Card): Promise<Card> {

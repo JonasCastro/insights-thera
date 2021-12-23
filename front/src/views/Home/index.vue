@@ -5,10 +5,6 @@
     <span class="title primary--text">Feed de <span>Insights</span></span>
     <div class="content-wrapper">
       <CardsList />
-      <div class="loading-more">
-        <h1>...</h1>
-        <p>Toque para exibir mais insights</p>
-      </div>
     </div>
     <Search class="search"/>
   </div>
@@ -57,18 +53,6 @@ export default {
   .search {
     position: fixed;
     bottom: 0;
-  }
-  .loading-more {
-    color: #666666;
-    text-align: center;
-  }
-  .loading-more h1 {
-    opacity: 50%;
-  }
-  .loading-more p {
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
   }
   .title {
     opacity: 90%;

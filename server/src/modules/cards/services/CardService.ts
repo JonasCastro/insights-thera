@@ -9,6 +9,10 @@ import ICardsRepository from '../infra/repositories/ICardsRepository';
 import TagService from '../../tags/services/TagService';
 import { container } from 'tsyringe';
 
+interface IOptions {
+  take: number,
+  offset: number,
+}
 @injectable()
 class CardService {
   constructor(
@@ -16,8 +20,8 @@ class CardService {
     private cardsRepository: ICardsRepository,
   ) {}
 
-  async getAll(): Promise<Card[]> {
-    return this.cardsRepository.find();
+  async getAll({ take, offset }: IOptions): Promise<[Card[], number]> {
+    return this.cardsRepository.find({ take, offset });
   }
 
   async create({text, tags}: ICreateCardDTO): Promise<Card> {

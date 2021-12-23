@@ -2,6 +2,19 @@
   <div class="container-wrapper">
     <div class="background"/>
     <Header />
+    <div class="d-flex justify-end">
+
+      <v-alert
+        v-if="messageAlert"
+        dismissible
+        color="primary"
+        class="mr-6"
+        type="info"
+        width="300"
+      >
+        {{ messageAlert }}
+      </v-alert>
+    </div>
     <v-card
       class="mx-auto my-12 px-4 pt-4"
       max-width="374"
@@ -23,6 +36,8 @@
       <v-select
         v-model="card.tags"
         :items="tags"
+        item-text="name"
+        item-value="id"
         class="select mt-0 pt-0"
         multiple
         chips
@@ -31,7 +46,7 @@
       >
       <template v-slot:selection="{ item }">
         <span class="tag mr-1 mt-1" >
-          <span> {{ item }} </span>
+          <span> {{ item.name }} </span>
         </span>
       </template>
       </v-select>
@@ -43,20 +58,27 @@
         x-large
         class="button font-italic"
         :disabled="!card.text || card.text.length > 400"
+        @click="handleCreateCard"
       >
         PUBLICAR
       </v-btn>
     </div>
-
   </div>
 </template>
 
 <script>
 import Header from './Header.vue'
+import api from '../../services/api'
+
 export default {
   name: 'Create',
   components: {
     Header
+  },
+  mounted () {
+    api.get('/tags').then(response => {
+      this.tags = response.data
+    })
   },
   data () {
     return {
@@ -64,7 +86,19 @@ export default {
         text: '',
         tags: []
       },
-      tags: ['melhor da partida', 'Tag2', 'melhor da partidas', 'Tag2s']
+      tags: [],
+      messageAlert: ''
+    }
+  },
+  methods: {
+    handleCreateCard () {
+      api.post('/cards', this.card)
+        .then(() => {
+          this.messageAlert = 'Cadastrado com sucesso'
+        })
+        .catch(() => {
+          this.messageAlert = 'Erro ao cadastrar o card'
+        })
     }
   }
 }

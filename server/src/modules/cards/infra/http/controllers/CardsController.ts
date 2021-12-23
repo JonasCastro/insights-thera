@@ -13,13 +13,18 @@ function findTags(tags: string[]){
   const tagIds = tags.map(tag => tag)
   return tagService.findByIds(tagIds)
 }
-
+interface IOptions {
+  take: number,
+  offset: number,
+}
 export default class TagsController {
   public async getAll(request: Request, response: Response): Promise<Response> {
     const cardService = container.resolve(CardService);
+    const { take = 4, offset = 0 } = request.query;
 
-    const cards = await cardService.getAll();
-    return response.json(cards);
+    const result = await cardService.getAll({ take, offset } as IOptions);
+    if(Array.isArray(result) && result.length) return response.json({ cards: result[0], total: result[1]});
+    return response.json({ cards: [], total: 0});
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
