@@ -37,6 +37,7 @@ export default {
     padding: 0;
     margin: 0;
     text-align: center;
+    background:#F4F4F4;
   }
   .content-wrapper {
     background:#F4F4F4;

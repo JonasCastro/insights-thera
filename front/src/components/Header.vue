@@ -28,6 +28,7 @@
         <v-icon color="primary">mdi-plus</v-icon>
       </v-btn>
     </div>
+    <v-divider class="mx-4"></v-divider>
   </header>
 </template>
 
@@ -37,7 +38,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .avatar {
     border: 2px solid #ED4D77 ;
   }

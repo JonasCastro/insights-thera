@@ -14,5 +14,8 @@
   body, input, button {
     font-size: 16px;
   }
+  span {
+    opacity: 95%;
+  }
 
 </style>

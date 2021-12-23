@@ -43,11 +43,10 @@ export default {
       ]
     }
   }
-
 }
 </script>
 
-<style>
+<style scoped>
   .card {
     padding: 16px !important;
     border-radius: 8px;

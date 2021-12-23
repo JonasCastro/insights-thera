@@ -1,0 +1,116 @@
+<template>
+  <div class="container-wrapper">
+    <div class="background"/>
+    <Header />
+    <v-card
+      class="mx-auto my-12 px-4 pt-4"
+      max-width="374"
+    >
+      <span class="card-title font-italic">INSIGHT</span>
+      <v-textarea
+        v-model="card.text"
+        name="input-7-4"
+        placeholder="Escreva aqui o seu insight…"
+        hide-details
+        counter="5"
+      />
+      <v-card-text class="mb-3 px-0 py-0 text-end">
+        <small :class="{ 'primary--text': card.text.length >= 400 }" >
+          limite de caracteres: 400
+        </small>
+      </v-card-text>
+      <span class="card-title font-italic">CATEGORIA</span>
+      <v-select
+        v-model="card.tags"
+        :items="tags"
+        class="select mt-0 pt-0"
+        multiple
+        chips
+        placeholder="Adicione uma categoria (opcional)…"
+        persistent-hint
+      >
+      <template v-slot:selection="{ item }">
+        <span class="tag mr-1" >
+          <span> {{ item }} </span>
+        </span>
+      </template>
+      </v-select>
+    </v-card>
+    <div class="button-wrapper d-flex justify-center">
+      <v-btn
+        elevation="1"
+        color="primary"
+        x-large
+        class="button font-italic"
+        :disabled="!card.text || card.text.length > 400"
+      >
+        PUBLICAR
+      </v-btn>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import Header from './Header.vue'
+export default {
+  name: 'Create',
+  components: {
+    Header
+  },
+  data () {
+    return {
+      card: {
+        text: '',
+        tags: []
+      },
+      tags: ['melhor da partida', 'Tag2', 'melhor da partidas', 'Tag2s']
+    }
+  }
+}
+</script>
+
+<style scoped>
+  .container-wrapper {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background:#F4F4F4;
+  }
+  .background {
+    background-image: url('../../assets/background.svg');
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: cover;
+    width: 100%;
+    height: 100px;
+  }
+  .card-title {
+    font-size: 14px !important;
+    font-weight: 400;
+    opacity: 80%;
+  }
+  .tag {
+    border-radius: 4px;
+    background: #ed4d7823;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 24px;
+  }
+  .tag span {
+    color: #ED4D77;
+  }
+  .button-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 16px;
+  }
+  .button {
+    font-weight: 600;
+    width: 380px !important;
+  }
+</style>
